@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Employee } from '../models/employee.model';
 
 @Component({
-  selector: 'list-employees',
+  // router is used, selector can be removed.
+  // selector: 'list-employees',
   templateUrl: './list-employees.component.html',
   styleUrls: ['./list-employees.component.css']
 })
