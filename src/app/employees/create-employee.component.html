@@ -1,5 +1,6 @@
 <form
     #employeeForm="ngForm"
+    ngNativeValidate
     (ngSubmit)="saveEmployee(employeeForm)"
 >
     <div class="panel panel-primary">
@@ -16,6 +17,7 @@
                     class="form-control"
                     name="fullName"
                     [(ngModel)]="fullName"
+                    required
                 >
             </div>
 
@@ -132,7 +134,32 @@
                     >
                 </div>
             </div>
-
+            <div class="form-group">
+                <label for="picPath">Picture Path</label>
+                <input
+                    id="picPath"
+                    type="text"
+                    class="form-control"
+                    name="picPath"
+                    [(ngModel)]="picPath"
+                >
+            </div>
+            <div class="form-group">
+                <img
+                    [src]="picPath"
+                    height="200"
+                    width="200"
+                    *ngIf="previewPic"
+                >
+            </div>
+            <div class="form-group">  
+                <button
+                    (click)="togglePicPreview()"
+                    class="btn btn-primary"
+                >
+                    {{previewPic ? "Hide " : "Show " }} Preview
+                </button>
+            </div>
         </div>
 
         <div class="panel-footer">

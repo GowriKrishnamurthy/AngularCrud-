@@ -9,7 +9,7 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
   styleUrls: ['./create-employee.component.css']
 })
 export class CreateEmployeeComponent implements OnInit {
-
+  previewPic  = false;
   gender = 'male';
 
   departments: Department[] = [
@@ -46,5 +46,8 @@ export class CreateEmployeeComponent implements OnInit {
 
   saveEmployee(employeeForm: NgForm): void {
     console.log(employeeForm.value);
+  }
+  togglePicPreview() {
+    this.previewPic = !this.previewPic;
   }
 }
