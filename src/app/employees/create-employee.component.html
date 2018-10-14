@@ -74,7 +74,12 @@
                 class="form-group"
                 [class.has-error]="phoneNumber.invalid"
             >
-                <label for="phoneNumber">Phone Number</label>
+                <label
+                    for="phoneNumber"
+                    class="control-label"
+                >
+                    Phone Number
+                </label>
                 <input
                     id="phoneNumber"
                     [required]="contactPreference.value=='phone'"
@@ -96,9 +101,9 @@
                 class="form-group"
                 [class.has-error]="contactPreference.invalid"
             >
-                <label>Contact Preference</label>
+                <label class="control-label">Contact Preference</label>
                 <div class="form-control">
-                    <label class="radio-inline">
+                    <label class="radio-inline control-label">
                         <input
                             type="radio"
                             name="contactPreference"
@@ -109,7 +114,7 @@
                         >
                         Email
                     </label>
-                    <label class="radio-inline">
+                    <label class="radio-inline control-label">
                         <input
                             type="radio"
                             name="contactPreference"
@@ -136,7 +141,7 @@
             >
                 <label>Gender</label>
                 <div class="form-control">
-                    <label class="radio-inline">
+                    <label class="radio-inline control-label">
                         <input
                             type="radio"
                             name="gender"
@@ -147,7 +152,7 @@
                         >
                         Male
                     </label>
-                    <label class="radio-inline">
+                    <label class="radio-inline control-label">
                         <input
                             type="radio"
                             name="gender"
@@ -166,39 +171,78 @@
                     Gender is required
                 </span>
             </div>
-            <div class="form-group">
+            <div
+                class="form-group"
+                [class.has-error]="isActive.invalid && isActive.touched"
+            >
                 <div class="form-control">
-                    <label class="checkbox-inline">
+                    <label class="checkbox-inline control-label">
                         <input
                             type="checkbox"
                             name="isActive"
                             [(ngModel)]="employee.isActive"
+                            [required]="employee.isActive==null"
+                            #isActive="ngModel"
                         >
                         Is Active
                     </label>
                 </div>
+                <span
+                    class="help-block"
+                    *ngIf="isActive.errors?.required && isActive.touched"
+                >
+                    Is Active is required
+                </span>
             </div>
 
-            <div class="form-group">
-                <label for="department">Department</label>
+            <div
+                class="form-group"
+                [class.has-error]="department.invalid && department.touched"
+            >
+                <label
+                    for="department"
+                    class="control-label"
+                >
+                    Department
+                </label>
                 <select
                     id="department"
                     name="department"
                     [(ngModel)]="employee.department"
                     class="form-control"
+                    required
+                    #department="ngModel"
                 >
                     <option
+                        disabled
+                        [ngValue]="null"
+                    >
+                        Select Department
+                    </option>
+                    .
+                    <option
                         *ngFor="let dept of departments"
-                        [value]="dept.id"
+                        [ngValue]="dept"
                     >
                         {{dept.name}}
                     </option>
 
                 </select>
+                <span
+                    class="help-block"
+                    *ngIf="department.errors?.required && department.touched"
+                >
+                    department is required
+                </span>
             </div>
             <div class="row">
                 <div class="form-group col-md-4">
-                    <label for="dateOfBirth">Date of Birth</label>
+                    <label
+                        for="dateOfBirth"
+                        class="control-label"
+                    >
+                        Date of Birth
+                    </label>
                     <input
                         id="dateOfBirth"
                         name="dateOfBirth"
@@ -211,7 +255,12 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="picPath">Picture Path</label>
+                <label
+                    for="picPath"
+                    class="control-label"
+                >
+                    Picture Path
+                </label>
                 <input
                     id="picPath"
                     type="text"
