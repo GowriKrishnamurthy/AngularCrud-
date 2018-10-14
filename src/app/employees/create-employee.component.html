@@ -1,7 +1,7 @@
 <form
     #employeeForm="ngForm"
     ngNativeValidate
-    (ngSubmit)="saveEmployee(employeeForm)"
+    (ngSubmit)="saveEmployee(employee)"
 >
     <div class="panel panel-primary">
         <div class="panel-heading">
@@ -10,27 +10,27 @@
         <div class="panel-body">
             <div
                 class="form-group"
-                [class.has-error]="fullNameControl.invalid" && "fullNameControl.touched"
-                [class.has-success]="fullNameControl.valid" 
+                [class.has-error]="name.invalid && name.touched"
+                [class.has-success]="name.valid"
             >  
                 <label
-                    for="fullName"
+                    for="name"
                     class="control-label"
                 >
                     Full Name
                 </label>  
                 <input
-                    id="fullName"
+                    id="name"
                     required
                     type="text"
                     class="form-control"
-                    name="fullName"
-                    [(ngModel)]="fullName"
-                    #fullNameControl="ngModel"
+                    name="name"
+                    [(ngModel)]="employee.name"
+                    #name="ngModel"
                 >  
                 <span
                     class="help-block"
-                    *ngIf="fullNameControl.invalid"
+                    *ngIf="name.invalid"
                 >
                     Full Name is required
                 </span>
@@ -43,7 +43,7 @@
                     type="text"
                     class="form-control"
                     name="email"
-                    [(ngModel)]="email"
+                    [(ngModel)]="employee.email"
                 >
             </div>
 
@@ -54,7 +54,7 @@
                     type="text"
                     class="form-control"
                     name="phoneNumber"
-                    [(ngModel)]="phoneNumber"
+                    [(ngModel)]="employee.phoneNumber"
                 >
             </div>
 
@@ -66,7 +66,7 @@
                             type="radio"
                             name="contactPreference"
                             value="email"
-                            [(ngModel)]="contactPreference"
+                            [(ngModel)]="employee.contactPreference"
                         >
                         Email
                     </label>
@@ -75,7 +75,7 @@
                             type="radio"
                             name="contactPreference"
                             value="phone"
-                            [(ngModel)]="contactPreference"
+                            [(ngModel)]="employee.contactPreference"
                         >
                         Phone
                     </label>
@@ -90,7 +90,7 @@
                             type="radio"
                             name="gender"
                             value="male"
-                            [(ngModel)]="gender"
+                            [(ngModel)]="employee.gender"
                         >
                         Male
                     </label>
@@ -99,7 +99,7 @@
                             type="radio"
                             name="gender"
                             value="female"
-                            [(ngModel)]="gender"
+                            [(ngModel)]="employee.gender"
                         >
                         Female
                     </label>
@@ -111,7 +111,7 @@
                         <input
                             type="checkbox"
                             name="isActive"
-                            [(ngModel)]="isActive"
+                            [(ngModel)]="employee.isActive"
                         >
                         Is Active
                     </label>
@@ -123,7 +123,7 @@
                 <select
                     id="department"
                     name="department"
-                    [(ngModel)]="department"
+                    [(ngModel)]="employee.department"
                     class="form-control"
                 >
                     <option
@@ -141,7 +141,7 @@
                     <input
                         id="dateOfBirth"
                         name="dateOfBirth"
-                        [(ngModel)]="dateOfBirth"
+                        [(ngModel)]="employee.dateOfBirth"
                         class="form-control"
                         type="text"
                         bsDatepicker
@@ -155,7 +155,7 @@
                     id="picPath"
                     type="text"
                     class="form-control"
-                    name="picPath"
+                    name="employee.picPath"
                     [(ngModel)]="picPath"
                 >
             </div>
@@ -188,3 +188,5 @@
     </div>
 </form>
 Angular Generated Form Model : {{employeeForm.value | json}}
+<br>
+Our Employee Model : {{ employee | json}}

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Department } from '../models/department.model';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { Employee } from '../models/employee.model';
 
 @Component({
   selector: 'app-create-employee',
@@ -9,7 +10,7 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
   styleUrls: ['./create-employee.component.css']
 })
 export class CreateEmployeeComponent implements OnInit {
-  previewPic  = false;
+  previewPic = false;
   gender = 'male';
 
   departments: Department[] = [
@@ -29,6 +30,19 @@ export class CreateEmployeeComponent implements OnInit {
   // default DOB
   // dateOfBirth: Date = new Date(2018, 0, 30);
 
+  employee: Employee = {
+    id: null,
+    name: ' null',
+    gender: null,
+    contactPreference: null,
+    phoneNumber: null,
+    email: null,
+    dateOfBirth: null,
+    department: null,
+    isActive: null,
+    picPath: null
+  };
+
   // set containerClass property to the preferred values
   constructor() {
     this.datePickerConfig = Object.assign({},
@@ -44,8 +58,8 @@ export class CreateEmployeeComponent implements OnInit {
   ngOnInit() {
   }
 
-  saveEmployee(employeeForm: NgForm): void {
-    console.log(employeeForm.value);
+  saveEmployee(newEmployee:  Employee):  void  {
+    console.log(newEmployee);
   }
   togglePicPreview() {
     this.previewPic = !this.previewPic;

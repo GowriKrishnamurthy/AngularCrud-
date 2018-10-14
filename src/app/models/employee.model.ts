@@ -8,5 +8,5 @@ export class Employee {
     dateOfBirth: Date;
     department: string;
     isActive: boolean;
-    photoPath?: string;
+    picPath?: string;
 }
