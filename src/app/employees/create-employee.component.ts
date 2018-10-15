@@ -10,7 +10,6 @@ import { Employee } from '../models/employee.model';
   styleUrls: ['./create-employee.component.css']
 })
 export class CreateEmployeeComponent implements OnInit {
-  @Input('appSelectRequiredValidator') defaultValue: string;
 
   previewPic = false;
   gender = 'male';
