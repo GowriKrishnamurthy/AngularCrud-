@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Department } from '../models/department.model';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
@@ -10,6 +10,8 @@ import { Employee } from '../models/employee.model';
   styleUrls: ['./create-employee.component.css']
 })
 export class CreateEmployeeComponent implements OnInit {
+  @Input('appSelectRequiredValidator') defaultValue: string;
+
   previewPic = false;
   gender = 'male';
 
@@ -58,7 +60,7 @@ export class CreateEmployeeComponent implements OnInit {
   ngOnInit() {
   }
 
-  saveEmployee(newEmployee:  Employee):  void  {
+  saveEmployee(newEmployee: Employee): void {
     console.log(newEmployee);
   }
   togglePicPreview() {

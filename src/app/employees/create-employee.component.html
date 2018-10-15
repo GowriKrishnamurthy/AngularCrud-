@@ -197,7 +197,7 @@
 
             <div
                 class="form-group"
-                [class.has-error]="department.invalid && department.touched"
+                [class.has-error]="department.errors?.defaultSelected && department.touched"
             >
                 <label
                     for="department"
@@ -212,14 +212,9 @@
                     class="form-control"
                     required
                     #department="ngModel"
+                    appSelectValidator
                 >
-                    <option
-                        disabled
-                        [ngValue]="null"
-                    >
-                        Select Department
-                    </option>
-                    .
+                    <option value="-1">Select Department</option>    
                     <option
                         *ngFor="let dept of departments"
                         [ngValue]="dept"
@@ -230,8 +225,9 @@
                 </select>
                 <span
                     class="help-block"
-                    *ngIf="department.errors?.required && department.touched"
+                    *ngIf="department.touched && department.errors?.defaultSelected"
                 >
+                    >
                     department is required
                 </span>
             </div>
