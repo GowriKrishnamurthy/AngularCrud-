@@ -10,12 +10,12 @@ import { EmployeeService } from './employee.service';
 })
 export class ListEmployeesComponent implements OnInit {
 
-  employees: Employee[]=[];
+  listEmployees: Employee[]=[];
   constructor(private empService:EmployeeService) {
    }
 
   ngOnInit() {
-    this.employees= this.empService.getEmployees();
+    this.listEmployees= this.empService.getEmployees();
   }
 
 }
