@@ -10,7 +10,10 @@
         <div class="panel-body">
             <div
                 ngModelGroup="passwordGroup"
-                [class.has-error]="confirmPassword.touched && confirmPassword.invalid"
+                #passwordGroup="ngModelGroup"
+                appConfirmEqualValidator
+                [class.has-error]="passwordGroup.errors?.notEqual
+            && !confirmPassword.errors?.required"
             >
                 <div
                     class="form-group"
@@ -28,7 +31,6 @@
                         type="text"
                         class="form-control"
                         name="password"
-                        (change)="confirmPassword.control.updateValueAndValidity()"
                         [(ngModel)]="employee.password"
                         #password="ngModel"
                     >
@@ -52,7 +54,6 @@
                     </label>
                     <input
                         name="confirmPassword"
-                        appConfirmEqualValidator="password"
                         required
                         id="confirmPassword"
                         type="text"
