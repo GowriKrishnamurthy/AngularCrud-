@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { Department } from '../models/department.model';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { Employee } from '../models/employee.model';
+import { EmployeeService } from './employee.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-employee',
@@ -45,7 +47,8 @@ export class CreateEmployeeComponent implements OnInit {
   };
 
   // set containerClass property to the preferred values
-  constructor() {
+  constructor(private employeeService: EmployeeService,
+    private router: Router) {
     this.datePickerConfig = Object.assign({},
       {
         containerClass: 'theme-dark-blue',
@@ -59,8 +62,9 @@ export class CreateEmployeeComponent implements OnInit {
   ngOnInit() {
   }
 
-  saveEmployee(newEmployee: Employee): void {
-    console.log(newEmployee);
+  saveEmployee(): void {
+    this.employeeService.createEmployee(this.employee);
+    this.router.navigate(['list']);
   }
   togglePicPreview() {
     this.previewPic = !this.previewPic;
