@@ -10,12 +10,23 @@ import { EmployeeService } from './employee.service';
 })
 export class ListEmployeesComponent implements OnInit {
 
-  listEmployees: Employee[]=[];
-  constructor(private empService:EmployeeService) {
-   }
+  listEmployees: Employee[] = [];
+  employeeToDisplay: Employee;
 
-  ngOnInit() {
-    this.listEmployees= this.empService.getEmployees();
+  constructor(private empService: EmployeeService) {
   }
 
+  ngOnInit() {
+    this.listEmployees = this.empService.getEmployees();
+    // Show first employee always
+    this.employeeToDisplay = this.listEmployees[0];
+  }
+
+  nextEmployee(): void {
+    if (this.employeeToDisplay.id <= this.listEmployees.length-1) {
+      this.employeeToDisplay = this.listEmployees[this.employeeToDisplay.id];
+    } else {
+      this.employeeToDisplay = this.listEmployees[0];
+    }
+  }
 }
