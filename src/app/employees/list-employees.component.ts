@@ -9,13 +9,16 @@ import { EmployeeService } from './employee.service';
   styleUrls: ['./list-employees.component.css']
 })
 export class ListEmployeesComponent implements OnInit {
-
   listEmployees: Employee[] = [];
   employeeToDisplay: Employee;
+  dataFromChild: Employee;
 
   constructor(private empService: EmployeeService) {
   }
 
+  handleNotify(eventData: Employee) {
+    this.dataFromChild = eventData;
+  }
   ngOnInit() {
     this.listEmployees = this.empService.getEmployees();
     // Show first employee always
@@ -23,7 +26,7 @@ export class ListEmployeesComponent implements OnInit {
   }
 
   nextEmployee(): void {
-    if (this.employeeToDisplay.id <= this.listEmployees.length-1) {
+    if (this.employeeToDisplay.id <= this.listEmployees.length - 1) {
       this.employeeToDisplay = this.listEmployees[this.employeeToDisplay.id];
     } else {
       this.employeeToDisplay = this.listEmployees[0];

@@ -1,9 +1,15 @@
-<button (click)="nextEmployee()" class="btn btn-primary">
+<h1 *ngIf="dataFromChild">
+    {{ dataFromChild?.name + ' ' + dataFromChild?.gender }}
+</h1>
+<!-- <button (click)="nextEmployee()" class="btn btn-primary">
   View Next Employee
-</button>
-<br/>
-<br/>
+</button> 
+-->
+<br>
 
-<display-employee [employee]="employeeToDisplay">
-
-</display-employee>
+<div *ngFor="let employee of employees">
+    <display-employee
+        (notify)="handleNotify($event)"
+    >
+    </display-employee>
+</div>
