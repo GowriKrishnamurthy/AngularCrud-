@@ -19,4 +19,9 @@ export class DisplayEmployeeComponent implements OnInit {
   handleClick() {
     this.notify.emit(this.employee);
   }
+
+  getNameAndGender(): string {
+    return this.employee.name + ' ' + this.employee.gender;
+  }
+  
 }
