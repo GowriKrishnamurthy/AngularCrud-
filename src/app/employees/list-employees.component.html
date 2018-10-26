@@ -1,17 +1,25 @@
 <!-- <h1 *ngIf="dataFromChild">
     {{ dataFromChild?.name + ' ' + dataFromChild?.gender }}
-</h1> -->
+</h1>
 
-<!-- <button (click)="nextEmployee()" class="btn btn-primary">
+ <button (click)="nextEmployee()" class="btn btn-primary">
   View Next Employee
-</button> 
--->
-<br>
+</button> -->
+
+<!-- <br>
 <h1 #h1Variable></h1>
-<div *ngFor="let employee of employees">
-    <div (click)="h1Variable.innerHTML = childComponent.getNameAndGender()">
+<div *ngFor="let employee of listEmployees">
+     <div (click)="h1Variable.innerHTML = childComponent.getNameAndGender()"> 
+            <div (click)="onClick(employee.id)" class="pointerCursor">
     <display-employee
         (notify)="handleNotify($event)"
         #childComponent>
     </display-employee>
+</div> -->
+
+<div *ngFor="let employee of listEmployees">
+    <div (click)="onClick(employee.id)" class="pointerCursor">
+        <display-employee [employee]="employee">
+        </display-employee>
+    </div>
 </div>
