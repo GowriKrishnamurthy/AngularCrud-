@@ -14,6 +14,7 @@ export class ListEmployeesComponent implements OnInit {
   listEmployees: Employee[] = [];
   employeeToDisplay: Employee;
   dataFromChild: Employee;
+  searchQueryString: string;
 
   constructor(private empService: EmployeeService,
     private router: Router) {
@@ -24,7 +25,7 @@ export class ListEmployeesComponent implements OnInit {
   }
   ngOnInit() {
     this.listEmployees = this.empService.getEmployees();
-    
+
     // Show first employee always
     this.employeeToDisplay = this.listEmployees[0];
   }

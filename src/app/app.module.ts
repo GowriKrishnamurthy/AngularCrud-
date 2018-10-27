@@ -13,6 +13,7 @@ import { DisplayEmployeeComponent } from './employees/display-employee.component
 import { CreateEmployeeCanDeactivateGuardService } from './employees/create-employee-can-deactivate-gaurd.service';
 import { EmployeeDetailsComponent } from './employees/employee-details.component';
 import { EmployeeService } from './employees/employee.service';
+import { EmployeeFilterPipe } from './employees/employee-filter.pipe';
 
 const appRoutes: Routes = [
   { path: 'list', component: ListEmployeesComponent },
@@ -29,7 +30,8 @@ const appRoutes: Routes = [
     SelectRequiredValidatorDirective,
     ConfirmEqualValidatorDirective,
     DisplayEmployeeComponent,
-    EmployeeDetailsComponent
+    EmployeeDetailsComponent,
+    EmployeeFilterPipe
   ],
   imports: [
       BsDatepickerModule.forRoot(),

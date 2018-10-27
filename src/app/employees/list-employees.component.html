@@ -16,10 +16,20 @@
         #childComponent>
     </display-employee>
 </div> -->
-
-<div *ngFor="let employee of listEmployees">
-    <div (click)="onClick(employee.id)" class="pointerCursor">
-        <display-employee [employee]="employee">
-        </display-employee>
+<div class="form-group">
+    <input
+        type="text"
+        class="form-control"
+        placeholder="Search By Name"
+        style="width:300px"
+        [(ngModel)]="searchQueryString"
+    >
+</div>
+<div *ngFor="let employee of listEmployees | employeeFilter:searchQueryString">
+    <div
+        (click)="onClick(employee.id)"
+        class="pointerCursor"
+    >
+        <display-employee [employee]="employee"></display-employee>
     </div>
 </div>
