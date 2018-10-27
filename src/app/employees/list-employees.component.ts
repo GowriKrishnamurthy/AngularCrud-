@@ -24,6 +24,7 @@ export class ListEmployeesComponent implements OnInit {
   }
   ngOnInit() {
     this.listEmployees = this.empService.getEmployees();
+    
     // Show first employee always
     this.employeeToDisplay = this.listEmployees[0];
   }
