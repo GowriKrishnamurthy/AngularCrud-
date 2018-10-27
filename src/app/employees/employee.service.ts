@@ -47,12 +47,14 @@ export class EmployeeService {
     return this.listEmployees;
   }
 
-
-  getEmployee(id:number): Employee {
-    return this.listEmployees.find(e=>e.id===id);
+  getEmployee(id: number): Employee {
+    return this.listEmployees.find(e => e.id === id);
+  }
+  getEmployeeCount(): number {
+    return this.listEmployees.length;
   }
 
-  createEmployee(newEmployee:Employee){
+  createEmployee(newEmployee: Employee) {
     this.listEmployees.push(newEmployee);
   }
 }
