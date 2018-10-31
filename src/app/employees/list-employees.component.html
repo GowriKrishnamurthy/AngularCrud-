@@ -25,11 +25,16 @@
         [(ngModel)]="searchQueryString"
     >
 </div>
-<div *ngFor="let employee of listEmployees | employeeFilter:searchQueryString">
+<!-- <div *ngFor="let employee of listEmployees | employeeFilter:searchQueryString"> -->
+<!-- Filter with no pipes -->
+<div *ngFor="let employee of filteredEmployees">
     <div
         (click)="onClick(employee.id)"
         class="pointerCursor"
     >
-        <display-employee [employee]="employee"></display-employee>
+        <display-employee
+            [employee]="employee"
+            #childComponent
+        ></display-employee>
     </div>
 </div>
