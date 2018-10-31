@@ -22,9 +22,9 @@ export class EmployeeDetailsComponent implements OnInit {
   ngOnInit() {
     // paramMap property returns an Observable.
     // subscribe to it to listen to any changes in route parameter value
-    this.route.paramMap.subscribe(params=>{
-        this.id = +params.get('id');
-        this.employee = this.employeeService.getEmployee(this.id);  
+    this.route.paramMap.subscribe(params => {
+      this.id = +params.get('id');
+      this.employee = this.employeeService.getEmployee(this.id);
     })
   }
 
@@ -36,9 +36,9 @@ export class EmployeeDetailsComponent implements OnInit {
       this.id = this.id + 1;
     else
       this.id = 1;
-    this.router.navigate(['employees', this.id],  {
-        queryParamsHandling: 'preserve'
-      });
+    this.router.navigate(['employees', this.id], {
+      queryParamsHandling:  'preserve'
+    });
 
   }
 }
