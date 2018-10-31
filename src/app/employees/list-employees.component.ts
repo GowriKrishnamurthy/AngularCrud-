@@ -23,7 +23,7 @@ export class ListEmployeesComponent implements OnInit {
 
   constructor(private empService: EmployeeService,
     private router: Router,
-    private _route: ActivatedRoute) { }
+    private route: ActivatedRoute) { }
 
   // We are binding to this property in the view template, so this
   // getter is called when the binding needs to read the value
@@ -43,7 +43,14 @@ export class ListEmployeesComponent implements OnInit {
 
     // Show first employee always
     //this.employeeToDisplay = this.listEmployees[0];
-    this.filteredEmployees = this.listEmployees;
+
+    // show full list if no search filter entered.
+    if (this.route.snapshot.queryParamMap.has('searchQueryString')) {
+      this.searchQueryString = this.route.snapshot.queryParamMap.get('searchQueryString');
+    } else {
+      this.filteredEmployees = this.listEmployees;
+    }
+
   }
 
   filterEmployees(searchString: string) {
@@ -59,7 +66,7 @@ export class ListEmployeesComponent implements OnInit {
   }
   onClick(employeeId: number) {
     this.router.navigate(['employees', employeeId], {
-        queryParams: { 'searchQueryString': this._searchQueryString, 'testParam': 'testValue' }
-      });
+      queryParams: { 'searchQueryString': this._searchQueryString, 'testParam': 'testValue' }
+    });
   }
 }
