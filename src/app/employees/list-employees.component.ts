@@ -39,18 +39,31 @@ export class ListEmployeesComponent implements OnInit {
     this.dataFromChild = eventData;
   }
   ngOnInit() {
-    this.listEmployees = this.empService.getEmployees();
+
+    this.empService.getEmployees().subscribe((empList)  =>  {
+      // This code executes asynchronously. When the data is returned
+      // after the 2 seconds delay, that's when employees property is set
+      //this.listEmployees = empList;
+      this.route.queryParamMap.subscribe(params => {
+        if (params.has('searchQueryString')) {
+          this.searchQueryString = this.route.snapshot.queryParamMap.get('searchQueryString');
+        } else {
+          this.filteredEmployees = this.listEmployees;
+        }
+      });
+    });
 
     // Show first employee always
     //this.employeeToDisplay = this.listEmployees[0];
 
     // show full list if no search filter entered.
-    if (this.route.snapshot.queryParamMap.has('searchQueryString')) {
-      this.searchQueryString = this.route.snapshot.queryParamMap.get('searchQueryString');
-    } else {
-      this.filteredEmployees = this.listEmployees;
-    }
-
+    this.route.queryParamMap.subscribe(params => {
+      if (params.has('searchQueryString')) {
+        this.searchQueryString = this.route.snapshot.queryParamMap.get('searchQueryString');
+      } else {
+        this.filteredEmployees = this.listEmployees;
+      }
+    });
   }
 
   filterEmployees(searchString: string) {

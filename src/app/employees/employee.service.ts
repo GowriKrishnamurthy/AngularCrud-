@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Employee } from '../models/employee.model';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/delay';
 
 @Injectable({
   providedIn: 'root'
@@ -43,8 +46,8 @@ export class EmployeeService {
     },
   ];
 
-  getEmployees(): Employee[] {
-    return this.listEmployees;
+  getEmployees(): Observable<Employee[]> {
+        return Observable.of(this.listEmployees).delay(2000);
   }
 
   getEmployee(id: number): Employee {
