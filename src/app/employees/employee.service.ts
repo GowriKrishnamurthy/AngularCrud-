@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Employee } from '../models/employee.model';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/delay';
+import { Observable } from 'rxjs';
+import {of ,delay} from 'rxjs/operators'
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
+
 export class EmployeeService {
   constructor() { }
   // hardcoding temporarily
@@ -47,9 +45,8 @@ export class EmployeeService {
   ];
 
   getEmployees(): Observable<Employee[]> {
-        return Observable.of(this.listEmployees).delay(2000);
-  }
-
+    return this.listEmployees;
+}
   getEmployee(id: number): Employee {
     return this.listEmployees.find(e => e.id === id);
   }

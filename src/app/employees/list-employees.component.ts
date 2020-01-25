@@ -38,33 +38,29 @@ export class ListEmployeesComponent implements OnInit {
   handleNotify(eventData: Employee) {
     this.dataFromChild = eventData;
   }
-  ngOnInit() {
 
-    this.empService.getEmployees().subscribe((empList)  =>  {
+  ngOnInit() {
+    this.empService.getEmployees().subscribe((empList) => {
       // This code executes asynchronously. When the data is returned
-      // after the 2 seconds delay, that's when employees property is set
-      //this.listEmployees = empList;
+      // after the 2 seconds delay, that's when the employees property is set
+      this.listEmployees = empList;
+    });
+  
+    // This code will not wait for 2 seconds. After a call to the subscribe() method
+    // is issued, the application continues to process the below lines of code. So for
+    // those 2 seconds this.employees property is undefined, and with in that time, the
+    // below code is executed which can have 2 serious implications
+    // 1. The list page will not display any data
+    // 2. Cannot read property 'length' of undefined error in the console
       this.route.queryParamMap.subscribe(params => {
         if (params.has('searchQueryString')) {
-          this.searchQueryString = this.route.snapshot.queryParamMap.get('searchQueryString');
+          this.searchQueryString = params.get('searchQueryString');
         } else {
           this.filteredEmployees = this.listEmployees;
         }
       });
-    });
-
-    // Show first employee always
-    //this.employeeToDisplay = this.listEmployees[0];
-
-    // show full list if no search filter entered.
-    this.route.queryParamMap.subscribe(params => {
-      if (params.has('searchQueryString')) {
-        this.searchQueryString = this.route.snapshot.queryParamMap.get('searchQueryString');
-      } else {
-        this.filteredEmployees = this.listEmployees;
-      }
-    });
-  }
+    }
+    
 
   filterEmployees(searchString: string) {
     return this.listEmployees.filter(employee =>
